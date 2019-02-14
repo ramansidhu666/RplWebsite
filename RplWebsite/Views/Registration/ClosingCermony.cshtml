@@ -1,0 +1,169 @@
+﻿@model  IEnumerable<rpl_registrations.Models.PersonModel>
+
+@{ ViewBag.Title = "Users"; Layout = null; }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Users</title>
+    <!-- Bootstrap -->
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    @*<link href="~/Content/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap-theme.min.css" rel="stylesheet">*@
+    <link href="~/Content/css/font.css" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/style.css" rel="stylesheet">
+    <link href="~/Content/css/media-queries.css" rel="stylesheet">
+
+    <script src="~/Content/js/npm.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    @*<script src="~/Content/js/bootstrap.js"></script>*@
+    <script src="~/Content/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+
+    <div class="list_sect_bg">
+        <div class="container">
+            <div class="col-md-2 col-sm-2">
+            </div>
+            <div class="col-md-8 col-sm-8">
+                @{
+
+
+                    if (Model != null)
+                    {
+                        var tblTestList = Model.ToList();
+                        if (tblTestList.Count>0)
+                        {
+                            var TotalAdults = tblTestList[0].TotalAdults;
+                            var TotalKids = tblTestList[0].TotalKids;
+                            <div class="lbl_clssss"><p style="float:left;">Total Adults</p><span id="" class="total_count">@TotalAdults</span></div>
+                            <div class="lbl_clssss"><p style="float:left;">Total Kids</p><span id="" class="total_count">@TotalKids</span></div>
+                        }
+
+
+                    }
+
+                }
+               
+                <div class="section_bg">
+
+                    <div class="list_sect table-responsive">
+                        <table id="mytable" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>SNo</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone No</th>
+                                    <th>Brokerage</th>
+                                    <th>Adults</th>
+                                    <th>Kids</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ int a = 0; }
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@(++a)</td>
+                                        <td>@item.FirstName @item.LastName</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.PhoneNo</td>
+                                        <td>@item.Brokerage</td>
+                                        <td>@item.Adults</td>
+                                        <td>@item.Kids</td>
+                                        @*<td><a title="Delete" href="@Url.Action("DeleteUser", "home", new { Id = item.UserId })"><i class="fa fa-scissors red"></i></a></td>*@
+                                        <td><a data-toggle="modal" onclick="updateid(@item.UserId);" title="Delete" href="#myModal"><i class="fa fa-scissors red"></i></a></td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+                </div>
+
+
+                <div id="pager" class="pager">
+                    <form>
+                        <img src="~/Images/pagination/first.png" class="first" />
+                        <img src="~/Images/pagination/prev.png" class="prev" />
+                        <input type="text" class="pagedisplay" />
+                        <img src="~/Images/pagination/next.png" class="next" />
+                        <img src="~/Images/pagination/last.png" class="last" />
+                        <select class="pagesize">
+                            <option selected="selected" value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                        </select>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-2 col-sm-2">
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <!-- modal header -->
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Delete User</h4>
+                </div><!-- /modal header -->
+                <!-- modal body -->
+                <div class="modal-body">
+                    <p> Are you sure? You want to delete this user. </p>
+                </div>
+                <!-- /modal body -->
+
+                <div class="modal-footer">
+                    <!-- modal footer -->
+                    <button class="bigButton" data-dismiss="modal">Close</button>
+                    <button class="bigButton" onclick="deleteme();">Delete</button>
+                </div><!-- /modal footer -->
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+    var id = 0;
+    function updateid(pid) {
+
+        id = pid;
+        $('#myModal').modal('show');
+    }
+    function deleteme() {
+        window.location = "/Home/DeleteUser?id=" + id;
+    }
+</script>
+<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+<script src="~/Content/js/jquery.tablesorter.min.js"></script>
+<script src="~/Content/js/jquery.tablesorter.pager.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#mytable').tablesorter().tablesorterPager({ container: $("#pager") });
+    });
+</script>
+

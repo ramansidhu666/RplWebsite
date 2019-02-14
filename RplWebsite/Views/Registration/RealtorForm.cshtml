@@ -1,0 +1,362 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>registration form</title>
+    <!-- Bootstrap -->
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="~/Content/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="~/Content/css/font.css" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/style.css" rel="stylesheet">
+    <link href="~/Content/css/media-queries.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+
+    <script src="~/Content/js/npm.js"></script>
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/js/bootstrap.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <style>
+        .mainbody {
+            background: url('../images/myphoto.blurred.png');
+            -moz-background-size: cover;
+            -webkit-background-size: cover;
+            background-size: cover;
+            background-position: top center !important;
+            background-repeat: no-repeat !important;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+
+<body class="bdy_div">
+    <div id="myDiv" style="float:left;text-align:center;width:100%;">
+        <img id="loading-image" src="~/Images/loader.gif" style="display:none;" />
+    </div>
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="register_frm_logo">
+                    <a href="#"><img src="~/Content/images/logo.png" alt="" /></a>
+                </div>
+                <div class="register_frm_bg">
+                    <h1>Registration Form for Opening Ceremony</h1>
+
+                    <form id="contact-form" method="post" role="form">
+
+                        <div class="messages"></div>
+
+                        <div class="controls">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="form_name">Firstname *</label>
+                                        <input type="text" name="FirstName" id="FirstName" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="form_lastname">Lastname *</label>
+                                        <input type="text" name="Lastname" id="Lastname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="form_email">Email</label>
+                                        <input id="Email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="form_phone">Phone</label>
+                                        <input id="Phone" type="number" name="phone" class="form-control" placeholder="Please enter your phone">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="form_name">Brokerage</label>
+                                        <input type="text" name="Brokerage" id="Brokerage" class="form-control" placeholder="Please enter your brokerage" required="required" data-error="Brokerage is required.">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="form_name">Remarks</label>
+                                        <input type="text" name="Remarks" id="Remarks" class="form-control" placeholder="Please enter your Remarks" required="required" data-error="Brokerage is required.">
+
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="checkbox" id="confrmation" />
+                                        I give my consent to RPL, Only 4 Agents and Singh Grafix,  to e-mail me about the result  and latest RPL news and offers on Other Services
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="button" onclick="send()" class="btn btn-success btn-send" id="submit" value="Send message">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div><!-- /.8 -->
+            </div>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <!-- modal header -->
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Message</h4>
+                    </div><!-- /modal header -->
+                    <!-- modal body -->
+                    <div class="modal-body">
+                        <p id="display_txt"> Must select the checkbox. </p>
+                    </div>
+                    <!-- /modal body -->
+
+                    <div class="modal-footer">
+                        <!-- modal footer -->
+                        <button class="bigButton" data-dismiss="modal">Close</button>
+                    </div><!-- /modal footer -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    function send() {
+        debugger;
+        var chk = $("#confrmation").prop('checked');
+        if ($("#confrmation").prop('checked') != true) {
+            $('#display_txt').text('');
+            $('#display_txt').text('Must select the checkbox.');
+            $('#myModal').modal('show');
+            return false;
+        }
+
+        if (ValidUsername() && ValidEmail() && ValidPhone()) {
+            var person = {
+                FirstName: $("#FirstName").val(),
+                Lastname: $("#Lastname").val(),
+                Email: $("#Email").val(),
+                PhoneNo: $("#Phone").val(),
+                Brokerage: $("#Brokerage").val(),
+                Remarks: $("#Remarks").val(),
+                EmailType: "realtor"
+
+            }
+
+
+
+
+            $.ajax({
+                url: '/Registration/Realtor',
+                type: 'post',
+                dataType: 'json',
+                beforeSend: function () {
+                    $("#loading-image").show();
+                    $('.bdy_div').addClass('mainbody');
+                },
+                success: function (data) {
+                    $("#loading-image").hide();
+                    $('.bdy_div').removeClass('mainbody');
+                    $('#display_txt').text('');
+                    $('#display_txt').text(data.msg);
+                    $('#myModal').modal('show');
+                    emptyall();
+                },
+                data: person
+            });
+        }
+        else {
+            return false;
+        }
+    }
+    function ValidUsername() {
+
+        //first name validation
+        var firstname = $("#FirstName").val();
+        firstname = firstname.replace(/\s/g, '');
+        if (firstname !== '') {
+            if (!/^[a-zA-Z]*$/g.test(firstname)) {
+                $("#FirstName").addClass('validation_control');
+                alert("Invalid user name.");
+                return false;
+            } else if (firstname.length > 30) {
+                $("#FirstName").addClass('validation_control');
+                alert('firstname cannot exceed more than 30 characters.');
+                return false;
+            }
+            else {
+                $("#FirstName").removeClass('validation_control');
+                return true;
+            }
+        }
+        else {
+            $("#FirstName").addClass('validation_control');
+            alert('must enter FirstName.');
+
+        }
+
+        //End
+
+        //Last Name
+        var lastname = $("#LastName").val();
+        lastname = lastname.replace(/\s/g, '');
+        if (lastname !== '') {
+            if (!/^[a-zA-Z]*$/g.test(lastname)) {
+                $("#LastName").addClass('validation_control');
+                alert("Invalid Last Name.");
+                return false;
+            } else if (lastname.length > 30) {
+                $("#LastName").addClass('validation_control');
+                alert('lastname cannot exceed more than 30 characters.');
+                return false;
+            }
+            else {
+                $("#LastName").removeClass('validation_control');
+                return true;
+            }
+        }
+        else {
+            $("#LastName").addClass('validation_control');
+            alert('must enter LastName.');
+
+        }
+        //End
+    }
+    function ValidEmail() {
+        //Email validation
+        var Email = $("#Email").val();
+        Email = Email.replace(/\s/g, '');
+        if (Email !== '') {
+            var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+            if (Email.length > 30) {
+                alert('email length cannot exceed more than 30 characters.');
+                $("#Email").addClass('validation_control');
+                return false;
+            } else if (!emailReg.test(Email)) {
+                alert('please enter the valid email.');
+                $("#Email").addClass('validation_control');
+                return false;
+            }
+            else {
+                $("#Email").removeClass('validation_control');
+                return true;
+            }
+        }
+        else {
+            $("#Email").addClass('validation_control');
+            alert('must enter email.');
+            return false;
+        }
+
+        //End
+    }
+    function ValidPhone() {
+        //phone no. validation
+        var phone = $("#Phone").val();
+        phone = phone.replace(/\s/g, '');
+        if (phone !== '') {
+            var phonereg = /^\d{3}-\d{3}-\d{4}$/;
+            if (phone.length > 12) {
+                $("#Phone").addClass('validation_control');
+                alert('phone no. length cannot exceed more than 12 characters.');
+                return false;
+            }
+                //else if (!phonereg.test(phone)) {
+            //    $("#Phone").addClass('validation_control');
+            //    alert('please enter the valid phone no.');
+            //    return false;
+            //}
+            else {
+                $("#Phone").removeClass('validation_control');
+                return true;
+            }
+        }
+        else {
+            $("#Phone").addClass('validation_control');
+            alert('must phone no.');
+            return false;
+        }
+
+
+        //end
+    }
+    function ValidSubject() {
+        //subject validation
+        var subject = $("#userSubject").val();
+        if (subject !== '') {
+            if (subject.length > 50) {
+                $("#userSubject").addClass('validation_control');
+                alert(' subject length cannot exceed more than 50 characters.');
+                return false;
+            }
+            else {
+                $("#userSubject").removeClass('validation_control');
+                return true;
+            }
+        }
+        else {
+            $("#userSubject").addClass('validation_control');
+            alert('must enter subject.');
+        }
+
+        //end
+    }
+    function Validmessage() {
+        //subject validation
+        var subject = $("#Message").val();
+        if (subject.length > 500) {
+            alert(' Message length cannot exceed more than 500 characters.');
+            return false;
+        }
+        else {
+            return true;
+        }
+        //end
+    }
+    function emptyall() {
+        $('#FirstName').val('');
+        $('#Lastname').val('');
+        $('#Email').val('');
+        $('#Phone').val('');
+        $('#Brokerage').val('');
+        $('#Remarks').val('');
+        
+    }
+</script>
